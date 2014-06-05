@@ -4,7 +4,7 @@ use warnings;
 no warnings 'uninitialized';
 use Archive::Extract;
 use LWP::Simple;
-use Statistics::R;
+#use Statistics::R;
 
 
 ##############################
