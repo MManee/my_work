@@ -4,7 +4,6 @@ use warnings;
 no warnings 'uninitialized';
 use Archive::Extract;
 use LWP::Simple;
-#use Statistics::R;
 
 
 ##############################
@@ -21,11 +20,13 @@ my $ok = $ae->extract;
 # remove PC gzip file
 `rm -rf phastConsElements15way.txt.gz`;
 
-# perform overlapSelect to identify non-exonic blocks for PC
-system("overlapSelect -selectCoordCols=0,1,2 -inCoordCols=1,2,3 dm3_exons.txt phastConsElements15way.txt PC_filter.txt");
+`mv phastConsElements15way.txt ../../data/chap3/`;
 
-my $datafile = "phastConsElements15way.txt";
-my $filterfile = "PC_filter.txt";
+# perform overlapSelect to identify non-exonic blocks for PC
+system("overlapSelect -selectCoordCols=0,1,2 -inCoordCols=1,2,3 ../../data/chap3/dm3_exons.txt ../../data/chap3/phastConsElements15way.txt ../../data/chap3/PC_filter.txt");
+
+my $datafile = "../../data/chap3/phastConsElements15way.txt";
+my $filterfile = "../../data/chap3/PC_filter.txt";
 
 my %compdata;
 my $line;
@@ -67,11 +68,11 @@ foreach (@data)
 }
 close FILEDATA;
 
-open FILEOUTPUT1, "> PC_nonexonic_exonic_spacer.txt";
-open FILEOUTPUT2, "> PC_nonexonic_spacer.txt";
-open FILEOUTPUT3, "> PC_exonic_spacer.txt";
-open FILEOUTPUT4, "> PC_nonexonic_block.txt";
-open FILEOUTPUT5, "> PC_exonic_block.txt";
+open FILEOUTPUT1, "> ../../data/chap3/PC_nonexonic_exonic_spacer.txt";
+open FILEOUTPUT2, "> ../../data/chap3/PC_nonexonic_spacer.txt";
+open FILEOUTPUT3, "> ../../data/chap3/PC_exonic_spacer.txt";
+open FILEOUTPUT4, "> ../../data/chap3/PC_nonexonic_block.txt";
+open FILEOUTPUT5, "> ../../data/chap3/PC_exonic_block.txt";
 
 my @currLine;
 my @nextLine;
@@ -162,12 +163,13 @@ foreach (@lines)
 }
 close KTFILE;
 
+`mv $KT_file ../../data/chap3/`;
 
 # perform overlapSelect to identify non-exonic blocks for KT
-system("overlapSelect -selectCoordCols=0,1,2 -inCoordCols=0,1,2 dm3_exons.txt KT_CEs.txt KT_filter.txt");
+system("overlapSelect -selectCoordCols=0,1,2 -inCoordCols=0,1,2 ../../data/chap3/dm3_exons.txt ../../data/chap3/KT_CEs.txt ../../data/chap3/KT_filter.txt");
 
-my $tdatafile = "KT_CEs.txt";
-my $tfilterfile = "KT_filter.txt";
+my $tdatafile = "../../data/chap3/KT_CEs.txt";
+my $tfilterfile = "../../data/chap3/KT_filter.txt";
 
 my %tcompdata;
 my $tline;
@@ -209,11 +211,11 @@ foreach (@tdata)
 }
 close FILEDATA;
 
-open FILEOUTPUT1, "> KT_nonexonic_exonic_spacer.txt";
-open FILEOUTPUT2, "> KT_nonexonic_spacer.txt";
-open FILEOUTPUT3, "> KT_exonic_spacer.txt";
-open FILEOUTPUT4, "> KT_nonexonic_block.txt";
-open FILEOUTPUT5, "> KT_exonic_block.txt";
+open FILEOUTPUT1, "> ../../data/chap3/KT_nonexonic_exonic_spacer.txt";
+open FILEOUTPUT2, "> ../../data/chap3/KT_nonexonic_spacer.txt";
+open FILEOUTPUT3, "> ../../data/chap3/KT_exonic_spacer.txt";
+open FILEOUTPUT4, "> ../../data/chap3/KT_nonexonic_block.txt";
+open FILEOUTPUT5, "> ../../data/chap3/KT_exonic_block.txt";
 
 my @tcurrLine;
 my @tnextLine;
