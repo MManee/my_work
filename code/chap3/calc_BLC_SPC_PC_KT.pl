@@ -20,6 +20,7 @@ my $ok = $ae->extract;
 # remove PC gzip file
 `rm -rf phastConsElements15way.txt.gz`;
 
+# move PC file to data/chap3
 `mv phastConsElements15way.txt ../../data/chap3/`;
 
 # perform overlapSelect to identify non-exonic blocks for PC
@@ -163,6 +164,7 @@ foreach (@lines)
 }
 close KTFILE;
 
+# move KT file to data/chap3
 `mv $KT_file ../../data/chap3/`;
 
 # perform overlapSelect to identify non-exonic blocks for KT
